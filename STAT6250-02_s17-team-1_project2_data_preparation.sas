@@ -38,3 +38,23 @@ each country.
 [Unique ID Schema] The column “country” is a primary key for data set 2015, 
 2016, and countries.
 ;
+
+* setup environmental parameters;
+%let inputDataset1URL =
+https://github.com/stat6250/team-1_project2/blob/master/data/2015.xlsx?raw=true
+;
+%let inputDataset1Type = XLSX;
+%let inputDataset1DSN = 2015_raw;
+
+%let inputDataset2URL =
+https://github.com/stat6250/team-1_project2/blob/master/data/2016.xlsx?raw=true
+;
+%let inputDataset2Type = XLSX;
+%let inputDataset2DSN = 2016_raw;
+
+%let inputDataset3URL =
+https://github.com/stat6250/team-1_project2/blob/master/data/countries.xlsx?raw=true
+;
+%let inputDataset3Type = XLSX;
+%let inputDataset3DSN = countries_raw;
+
