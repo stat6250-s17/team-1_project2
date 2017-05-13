@@ -33,8 +33,7 @@ each country.
 [Experimental Unit Description] countries in 2015
 [Number of Observations] 188             
 [Number of Features] 21
-[Data Source] https://www.kaggle.com/footprintnetwork/ecological-footprint/
-downloads/countries.csv
+[Data Source] https://www.kaggle.com/footprintnetwork/ecological-footprint/downloads/countries.csv
 [Data Dictionary] https://www.kaggle.com/footprintnetwork/ecological-footprint
 [Unique ID Schema] The column “country” is a primary key for data set 2015, 
 2016, and countries.
