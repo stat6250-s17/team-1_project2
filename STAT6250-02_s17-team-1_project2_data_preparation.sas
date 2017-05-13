@@ -90,8 +90,8 @@ proc sort
     ;
 run;
 
-* combine 2015 and 2016 data vertically, and compute year-over-year change in Rank,
-  retaining all C2015-2016 fields and y-o-y Rank change;
+* combine 2015 and 2016 data vertically, and compute year-over-year change in Happiness Rank,
+  retaining all C2015-2016 fields and y-o-y Happiness Rank change;
 data 2015_raw_with_yoy_change;
     set
         2016_raw_sorted(in=C2016_data_row)
@@ -107,21 +107,16 @@ data 2015_raw_with_yoy_change;
         C2016_data_row=1
     then
         do;
-            Percent_Eligible_FRPM_K12_1516 = Percent_Eligible_FRPM_K12;
+            Happiness_Rank_2016 = Happiness Rank;
         end;
     else if
-        ay2014_data_row=1
-        and
-        Percent_Eligible_FRPM_K12 > 0
-        and
-        substr(School_Code,1,6) ne "000000"
+        C2015_data_row=1
     then
         do;
-            CDS_Code = cats(County_Code,District_Code,School_Code);
-            frpm_rate_change_2014_to_2015 =
-                Percent_Eligible_FRPM_K12
+            Happiness_Rank_change_2015_to_2016 =
+                Happiness_Rank_2016
                 -
-                Percent_Eligible_FRPM_K12_1516
+                Hapiness Rank
             ;
             output;
         end;
