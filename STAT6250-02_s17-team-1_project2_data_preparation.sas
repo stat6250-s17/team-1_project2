@@ -61,7 +61,7 @@ https://github.com/stat6250/team-1_project2/blob/master/data/countries.xlsx?raw=
 * sort and check raw datasets for duplicates with respect to their unique ids;
 proc sort
         nodupkey
-        data=2015
+        data=2015_raw
         dupout=2015_raw_dups
         out=2015_raw_sorted
     ;
