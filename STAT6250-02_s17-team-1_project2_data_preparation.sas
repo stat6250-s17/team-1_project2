@@ -41,19 +41,19 @@ each country.
 
 * setup environmental parameters;
 %let inputDataset1URL =
-https://github.com/stat6250/team-1_project2/blob/master/data/2015.xlsx?raw=true
+https://github.com/stat6250/team-1_project2/blob/master/data/2015-Edited.xlsx?raw=true
 ;
 %let inputDataset1Type = XLSX;
 %let inputDataset1DSN = 2015_raw;
 
 %let inputDataset2URL =
-https://github.com/stat6250/team-1_project2/blob/master/data/2016.xlsx?raw=true
+https://github.com/stat6250/team-1_project2/blob/master/data/2016-Edited.xlsx?raw=true
 ;
 %let inputDataset2Type = XLSX;
 %let inputDataset2DSN = 2016_raw;
 
 %let inputDataset3URL =
-https://github.com/stat6250/team-1_project2/blob/master/data/countries.xlsx?raw=true
+https://github.com/stat6250/team-1_project2/blob/master/data/countries-Edited.xlsx?raw=true
 ;
 %let inputDataset3Type = XLSX;
 %let inputDataset3DSN = countries_raw;
@@ -92,13 +92,13 @@ run;
 
 * combine 2015 and 2016 data vertically, and compute year-over-year change in Happiness Rank,
   retaining all C2015-2016 fields and y-o-y Happiness Rank change;
-data 2015_raw_with_yoy_change;
+data 2016_raw_with_yoy_change;
     set
         2016_raw_sorted(in=C2016_data_row)
         2015_raw_sorted(in=C2015_data_row)
     ;
     retain
-        Rank
+        Happiness_Rank
     ;
     by
         Country
@@ -107,7 +107,7 @@ data 2015_raw_with_yoy_change;
         C2016_data_row=1
     then
         do;
-            Happiness_Rank_2016 = Happiness Rank;
+            Happiness_Rank_2016 = Happiness_Rank;
         end;
     else if
         C2015_data_row=1
@@ -116,8 +116,47 @@ data 2015_raw_with_yoy_change;
             Happiness_Rank_change_2015_to_2016 =
                 Happiness_Rank_2016
                 -
-                Hapiness Rank
+                Hapiness_Rank
             ;
             output;
         end;
+run;
+
+* build analytic dataset from raw datasets with the least number of columns and
+minimal cleaning/transformation needed to address research questions in
+corresponding data-analysis files;
+data country_analytic_file;
+    retain
+        Country
+        Region
+        Happiness_Rank
+        Hapiness_Score
+        Economy
+        Family
+        Health
+        Freedom
+        Trust
+        Generosity
+        Dystopia_Residual
+    ;
+    keep
+        Country
+        Region
+        Happiness_Rank
+        Hapiness_Score
+        Economy
+        Family
+        Health
+        Freedom
+        Trust
+        Generosity
+        Dystopia_Residual
+    ;
+    merge
+        2016_raw_with_yoy_change
+        countries_raw
+    ;
+    by
+        Country
+    ;
 run;
