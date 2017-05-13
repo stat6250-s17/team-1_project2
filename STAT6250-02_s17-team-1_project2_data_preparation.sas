@@ -90,8 +90,8 @@ proc sort
     ;
 run;
 
-* combine 2015 and 2016 data vertically, and compute year-over-year change in Happiness Rank,
-  retaining all C2015-2016 fields and y-o-y Happiness Rank change;
+* combine 2015 and 2016 data vertically, and compute year-over-year change in 
+Happiness Rank, retaining all C2015-2016 fields and y-o-y Happiness Rank change;
 data 2016_raw_with_yoy_change;
     set
         2016_raw_sorted(in=C2016_data_row)
