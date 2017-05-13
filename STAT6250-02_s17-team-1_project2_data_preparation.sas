@@ -89,3 +89,35 @@ proc sort
         Country
     ;
 run;
+
+* combine 2015 and 2016 data vertically, and compute year-over-year change in Happiness Rank,
+  retaining all C2015-2016 fields and y-o-y Happiness Rank change;
+data 2015_raw_with_yoy_change;
+    set
+        2016_raw_sorted(in=C2016_data_row)
+        2015_raw_sorted(in=C2015_data_row)
+    ;
+    retain
+        Rank
+    ;
+    by
+        Country
+    ;
+    if
+        C2016_data_row=1
+    then
+        do;
+            Happiness_Rank_2016 = Happiness Rank;
+        end;
+    else if
+        C2015_data_row=1
+    then
+        do;
+            Happiness_Rank_change_2015_to_2016 =
+                Happiness_Rank_2016
+                -
+                Hapiness Rank
+            ;
+            output;
+        end;
+run;
