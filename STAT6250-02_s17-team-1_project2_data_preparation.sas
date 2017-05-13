@@ -58,3 +58,34 @@ https://github.com/stat6250/team-1_project2/blob/master/data/countries.xlsx?raw=
 %let inputDataset3Type = XLSX;
 %let inputDataset3DSN = countries_raw;
 
+* sort and check raw datasets for duplicates with respect to their unique ids;
+proc sort
+        nodupkey
+        data=2015_raw
+        dupout=2015_raw_dups
+        out=2015_raw_sorted
+    ;
+    by
+        Country
+    ;
+run;
+proc sort
+        nodupkey
+        data=2016_raw
+        dupout=2016_raw_dups
+        out=2016_raw_sorted
+    ;
+    by
+        Country
+    ;
+run;
+proc sort
+        nodupkey
+        data=countries_raw
+        dupout=countries_raw_dups
+        out=countries_raw_sorted
+    ;
+    by
+        Country
+    ;
+run;
