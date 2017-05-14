@@ -26,3 +26,67 @@ X "cd ""%substr(%sysget(SAS_EXECFILEPATH),1,%eval(%length(%sysget(SAS_EXECFILEPA
 * Research Question Analysis Starting Point;
 *******************************************************************************;
 *
+Question: Are HDIand GDP significant to total ecological footprint?
+Rationale: This will help see which variables would make good predictors for the
+regression model (ecological_footprint = HDI + GDP_per_Capita HDI*GDP_per_Capita).
+Note: This looks only at the ecological data set 'countries'
+Methodology: Use Proc glm to get the regression model from the data set. Use region
+as region as the class.
+Limitations: Does not incorporate the happiness data set.
+Followup Steps: Could try to incorporate happiness data set in new regression
+model.
+;
+proc GLM data=countries;
+    class 
+		region
+    ;
+	MODEL 
+		Total_Ecological_Footprint = 
+			HDI 
+			GDP_per_Capita 
+			HDI*GDP_per_Capita
+    ;
+run;
+
+*******************************************************************************;
+* Research Question Analysis Starting Point;
+*******************************************************************************;
+*
+Question: Which resource consumptions contribute the most to a country’s happiness? 
+Rationale: Rationale: This should help identify why type of consumption has the most 
+positive effect on happiness.
+Note: This compares the column all the different resources in the ecological data set
+with the happiness score from 2016.
+Methodology: Use the merged data set to run proc glm to see if the resource variables
+have are significant to the result of happiness.
+Limitations: 
+Followup Steps: 
+;
+Proc GLM data = merged_data;
+    class 
+		region
+    ;
+	MODEL 
+		Happiness_Score = 
+			Cropland	
+			Grazing_Land	
+			Forest_Land	
+			Fishing_Water	
+			Urban_Land
+	;
+run;
+
+*******************************************************************************;
+* Research Question Analysis Starting Point;
+*******************************************************************************;
+*
+Question: Did happiness score change from 2015 to 2016? 
+Rationale: This will allow us to which countries increased or decreased in 
+happiness.
+Note: This will compare the column Happiness_Score from data set '2015' and data 
+set '2016'
+Methodology: Can either run regression with '2015' as x adn '2016' as y, or 
+find the difference between them.
+Limitations: 
+Followup Steps: 
+;
