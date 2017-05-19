@@ -41,16 +41,16 @@ each country.
 
 * setup environmental parameters;
 %let inputDataset1URL =
-https://github.com/stat6250/team-1_project2/blob/master/data/2015-Edited.xlsx?raw=true
+https://github.com/stat6250/team-1_project2/blob/master/data/Rank2015-Edited.xlsx?raw=true
 ;
 %let inputDataset1Type = XLSX;
-%let inputDataset1DSN = 2015_raw;
+%let inputDataset1DSN = Rank2015_raw;
 
 %let inputDataset2URL =
-https://github.com/stat6250/team-1_project2/blob/master/data/2016-Edited.xlsx?raw=true
+https://github.com/stat6250/team-1_project2/blob/master/data/Rank2016-Edited.xlsx?raw=true
 ;
 %let inputDataset2Type = XLSX;
-%let inputDataset2DSN = 2016_raw;
+%let inputDataset2DSN = Rank2016_raw;
 
 %let inputDataset3URL =
 https://github.com/stat6250/team-1_project2/blob/master/data/countries-Edited.xlsx?raw=true
@@ -106,9 +106,9 @@ https://github.com/stat6250/team-1_project2/blob/master/data/countries-Edited.xl
 * sort and check raw datasets for duplicates with respect to their unique ids;
 proc sort
         nodupkey
-        data=2015_raw
-        dupout=2015_raw_dups
-        out=2015_raw_sorted
+        data=Rank2015_raw
+        dupout=Rank2015_raw_dups
+        out=Rank2015_raw_sorted
     ;
     by
         Country
@@ -116,9 +116,9 @@ proc sort
 run;
 proc sort
         nodupkey
-        data=2016_raw
-        dupout=2016_raw_dups
-        out=2016_raw_sorted
+        data=Rank2016_raw
+        dupout=Rank2016_raw_dups
+        out=Rank2016_raw_sorted
     ;
     by
         Country
@@ -139,8 +139,8 @@ run;
 Happiness Rank, retaining all C2015-2016 fields and y-o-y Happiness Rank change;
 data 2016_raw_with_yoy_change;
     set
-        2016_raw_sorted(in=C2016_data_row)
-        2015_raw_sorted(in=C2015_data_row)
+        Rank2016_raw_sorted(in=C2016_data_row)
+        Rank2015_raw_sorted(in=C2015_data_row)
     ;
     retain
         Happiness_Rank
