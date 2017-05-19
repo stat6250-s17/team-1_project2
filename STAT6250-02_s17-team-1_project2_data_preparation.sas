@@ -158,7 +158,7 @@ data 2016_raw_with_yoy_change;
         C2015_data_row=1
     then
         do;
-            Happiness_Rank_change_2015_to_2016 =
+            Rank_change_2015_to_2016 =
                 Happiness_Rank_2016
                 -
                 Hapiness_Rank
