@@ -138,42 +138,39 @@ run;
 * combine 2015 and 2016 data vertically, and compute year-over-year change in 
 Happiness Rank, retaining all C2015-2016 fields and y-o-y Happiness Rank change;
 data Rank2016_raw_with_yoy_change;
-    retain
-	    Country_code;
-	length
-	    Country_code $32;
+    length
+	    Country $64;
     set
         Rank2016_raw_sorted(in=C2016_data_row)
         Rank2015_raw_sorted(in=C2015_data_row)
     ;
     retain
-        Happiness_Rank_2016
-	Happiness_Score_2016
+        Happiness_Rank_2015
+	Happiness_Score_2015
     ;
     by
         Country
     ;
     if
-        C2016_data_row=1
-    then
-        do;
-            Happiness_Rank_2016 = Happiness_Rank;
-	    Happiness_Score_2016 = Happiness_Score;
-        end;
-    else if
         C2015_data_row=1
     then
         do;
-		    Country_code = cats(Country);
+            Happiness_Rank_2015 = Happiness_Rank;
+	    Happiness_Score_2015 = Happiness_Score;
+        end;
+    else if
+        C2016_data_row=1
+    then
+        do;    
             Rank_change_2015_to_2016 =
-                Happiness_Rank_2016
-                -
                 Happiness_Rank
+                -
+                Happiness_Rank_2015
             ;
 	    Score_change_2015_to_2016 =
-	        Happiness_Score_2016
+	        Happiness_Score
 		-
-		Happiness_Score
+		Happiness_Score_2015
 	    ;
             output;
         end;
@@ -183,35 +180,84 @@ run;
 minimal cleaning/transformation needed to address research questions in
 corresponding data-analysis files;
 data country_analytic_file;
+    length
+    Country $64
+    ;
     retain
         Country
         Region
-        Happiness_Rank
-        Hapiness_Score
-        Economy
+	Population
+	Happiness_Rank
+	Happiness_Rank_2015
+	Rank_change_2015_to_2016
+        Happiness_Score
+	Happiness_Score_2015
+	Score_change_2015_to_2016
+	Economy
         Family
         Health
         Freedom
         Trust
         Generosity
         Dystopia_Residual
+	HDI
+	GDP_per_Capita
+	Cropland_Footprint
+	Grazing_Footprint
+	Forest_Footprint
+	Carbon_Footprint
+	Fish_Footprint
+	Total_Ecological_Footprint
+	Cropland
+	Grazing_Land
+	Forest_Land
+	Fishing_water
+	Urban_Land
+	Total_Biocapacity
+	Biocapacity_Deficit_or_Reserve
+	Earths_Required
+	Countries_Required
+	Data_Quality  
     ;
     keep
         Country
         Region
-        Happiness_Rank
-        Hapiness_Score
-        Economy
+	Population
+	Happiness_Rank
+	Happiness_Rank_2015
+	Rank_change_2015_to_2016
+        Happiness_Score
+	Happiness_Score_2015
+	Score_change_2015_to_2016
+	Economy
         Family
         Health
         Freedom
         Trust
         Generosity
         Dystopia_Residual
+	HDI
+	GDP_per_Capita
+	Cropland_Footprint
+	Grazing_Footprint
+	Forest_Footprint
+	Carbon_Footprint
+	Fish_Footprint
+	Total_Ecological_Footprint
+	Cropland
+	Grazing_Land
+	Forest_Land
+	Fishing_water
+	Urban_Land
+	Total_Biocapacity
+	Biocapacity_Deficit_or_Reserve
+	Earths_Required
+	Countries_Required
+	Data_Quality
     ;
     merge
-        2016_raw_with_yoy_change
-        countries_raw
+        Rank2016_raw_with_yoy_change
+        countries_raw_sorted
     ;
     by
         Country
