@@ -137,7 +137,11 @@ run;
 
 * combine 2015 and 2016 data vertically, and compute year-over-year change in 
 Happiness Rank, retaining all C2015-2016 fields and y-o-y Happiness Rank change;
-data 2016_raw_with_yoy_change;
+data Rank2016_raw_with_yoy_change;
+    retain
+	    Country_code;
+	length
+	    Country_code $32;
     set
         Rank2016_raw_sorted(in=C2016_data_row)
         Rank2015_raw_sorted(in=C2015_data_row)
@@ -158,10 +162,11 @@ data 2016_raw_with_yoy_change;
         C2015_data_row=1
     then
         do;
+		    Country_code = cats(Country);
             Rank_change_2015_to_2016 =
                 Happiness_Rank_2016
                 -
-                Hapiness_Rank
+                Happiness_Rank
             ;
             output;
         end;
