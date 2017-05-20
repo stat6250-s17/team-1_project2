@@ -141,8 +141,8 @@ data Rank2016_raw_with_yoy_change;
     length
 	    Country $64;
     set
-        Rank2016_raw_sorted(in=C2016_data_row)
         Rank2015_raw_sorted(in=C2015_data_row)
+        Rank2016_raw_sorted(in=C2016_data_row)
     ;
     retain
         Happiness_Rank_2015
