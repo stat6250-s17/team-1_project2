@@ -152,13 +152,6 @@ data Rank2016_raw_with_yoy_change;
         Country
     ;
     if
-        C2015_data_row=1
-    then
-        do;
-            Happiness_Rank_2015 = Happiness_Rank;
-	    Happiness_Score_2015 = Happiness_Score;
-        end;
-    else if
         C2016_data_row=1
     then
         do;    
@@ -173,6 +166,13 @@ data Rank2016_raw_with_yoy_change;
 		Happiness_Score_2015
 	    ;
             output;
+        end;
+	else if
+        C2015_data_row=1
+    then
+        do;
+            Happiness_Rank_2015 = Happiness_Rank;
+	    Happiness_Score_2015 = Happiness_Score;
         end;
 run;
 
