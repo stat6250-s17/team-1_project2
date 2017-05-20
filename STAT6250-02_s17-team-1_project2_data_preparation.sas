@@ -143,7 +143,7 @@ data 2016_raw_with_yoy_change;
         Rank2015_raw_sorted(in=C2015_data_row)
     ;
     retain
-        Happiness_Rank
+        Happiness_Rank_2016
     ;
     by
         Country
