@@ -46,6 +46,7 @@ footnote2
 footnote3
 "This means that the more developed a country is, the greater the value of output each person can produce
 for the country."
+;
 
 *
 Note: This looks at the merged data set, but only uses columns from 'Countries_Edited'.
@@ -95,10 +96,12 @@ footnote1
 footnote2
 "The reason for this could be humans spend the most time in urban space, so the quality of 
 urban space could have a significant impact on their happiness."
+;
 
 footnote3
 "It is possible that all the other resource lands provide the basis to sustain society, so urban space
 is the 'extra' factor."
+;
 
 *
 Note: This compares the columns of all the different resources in the 'Countries-Edited' data set
@@ -154,6 +157,7 @@ footnote2
 
 footnote3
 "There appear to be 4 outliers, removing these should improve the correlation strength."
+;
 
 *
 Note: This will compare the column Happiness_Score_2015 from data set 'Rank2015-Edited' and Happiness_Score
