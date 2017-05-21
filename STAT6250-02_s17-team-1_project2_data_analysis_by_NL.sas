@@ -27,7 +27,7 @@ X "cd ""%substr(%sysget(SAS_EXECFILEPATH),1,%eval(%length(%sysget(SAS_EXECFILEPA
 *******************************************************************************;
 
 title1
-'Research Question: Are HDIand GDP significant to total ecological footprint?'
+'Research Question: Are HDI and GDP significant to total ecological footprint?'
 ;
 
 title2
@@ -36,20 +36,30 @@ regression model (ecological_footprint = HDI + GDP_per_Capita HDI*GDP_per_Capita
 ;
 
 footnote1
+"HDI, GDP_per_Capita, and HDI*GDP_per_Capita have small p-values, so they are all significant to the model."
 ;
+
+footnote2
+"The contour plot depicts the regression model as exponential."
+;
+
+footnote3
+"This means that the more developed a country is, the greater the value of output each person can produce
+for the country."
 
 *
-Note: This looks only at the ecological data set 'countries'.
+Note: This looks at the merged data set, but only uses columns from 'Countries_Edited'.
 
-Methodology: Use Proc glm to get the regression model from the data set. Use region
-as region as the class.
+Methodology: Use Proc glm to get the regression model ecological_footprint = HDI + GDP_per_Capita HDI*GDP_per_Capita
+from the data set country_analytic_file. Use region as the class, HDI and GDP_per_Capita as predictors, and HDI*GDP_per_Capita
+as the interaction term.
 
 Limitations: Does not incorporate the happiness data set.
-Followup Steps: Could try to incorporate happiness data set in new regression
-model.
+
+Followup Steps: Could try to use happiness as the response variable with the same explanatory variables.
 ;
 
-proc GLM data=countries;
+proc GLM data=country_analytic_file;
     class 
 		region
     ;
@@ -79,21 +89,31 @@ positive effect on happiness.'
 ;
 
 footnote1
+"Looking at both Type I and Type III output, only urban land appears to significantly impact happiness."
 ;
+
+footnote2
+"The reason for this could be humans spend the most time in urban space, so the quality of 
+urban space could have a significant impact on their happiness."
+
+footnote3
+"It is possible that all the other resource lands provide the basis to sustain society, so urban space
+is the 'extra' factor."
 
 *
-Note: This compares the column all the different resources in the ecological data set
-with the happiness score from 2016.
+Note: This compares the columns of all the different resources in the 'Countries-Edited' data set
+with the happiness_score from 'Ranked2016_Edited'.
 
-Methodology: Use the merged data set to run proc glm to see if the resource variables
-have are significant to the result of happiness.
+Methodology: Use Proc glm to get the regression model Happiness_Score = Cropland+Grazing_Land+Forest_Land+Fishing_Water+Urban_Land
+from the merged data set country_analytic_file. Happiness is the response variable, while the rest are explanatory variables.
 
-Limitations: 
+Limitations: There is no interation element in this regression model.
 
-Followup Steps: 
+Followup Steps: Could use region as a group factor to be used as an interaction model to see if there are any
+changes to the results.
 ;
 
-Proc GLM data = merged_data;
+Proc GLM data = country_analytic_file;
     class 
 		region
     ;
@@ -125,20 +145,38 @@ happiness.'
 ;
 
 footnote1
+"There is a positive correlation between Happiness in 2015 to Happiness in 2016."
 ;
+
+footnote2
+"This means Happiness in most countries did increase."
+;
+
+footnote3
+"There appear to be 4 outliers, removing these should improve the correlation strength."
 
 *
-Note: This will compare the column Happiness_Score from data set '2015' and data 
-set '2016'.
+Note: This will compare the column Happiness_Score_2015 from data set 'Rank2015-Edited' and Happiness_Score
+from data set 'Rank2016-Edited' .
 
-Methodology: Can either run regression with '2015' as x adn '2016' as y, or 
-find the difference between them.
+Methodology: Use proc reg to run the regression model with Happiness_score as the response
+variable and happiness_score_2015 as the explanatory variable. This function will generate
+several plots in order to analyze the relationship.
 
-Limitations: 
+Limitations: The function points out the outliers, but they will have to be manually removed
+from the data set.
 
-Followup Steps: 
+Followup Steps: Could look at the countries that decreased in happiness and see what could
+have lead to their unhappiness.
 ;
 
+proc reg 
+    data=country_analytic_file
+    ;
+    model 
+		happiness_score=happiness_score_2015
+    ;
+run;
 
 title;
 footnote;
