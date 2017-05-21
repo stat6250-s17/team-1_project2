@@ -6,9 +6,11 @@
 *
 This file uses the following analytic dataset to address several research
 questions regarding world happiness rankings and national ecological footprint
+
 Dataset Name: country_analytic_file created in external file
 STAT6250-02_s17-team-1_project2_data_preparation.sas, which is assumed to be
 in the same directory as this file
+
 See included file for dataset properties
 ;
 
@@ -60,15 +62,17 @@ Limitations: Does not incorporate the happiness data set.
 Followup Steps: Could try to use happiness as the response variable with the same explanatory variables.
 ;
 
-proc GLM data=country_analytic_file;
-    class 
-		region
+proc GLM 
+	data=country_analytic_file
     ;
-	MODEL 
-		Total_Ecological_Footprint = 
-			HDI 
-			GDP_per_Capita 
-			HDI*GDP_per_Capita
+    class 
+	region
+    ;
+    MODEL 
+	Total_Ecological_Footprint = 
+		HDI 
+		GDP_per_Capita 
+		HDI*GDP_per_Capita
     ;
 run;
 
@@ -118,16 +122,16 @@ changes to the results.
 
 Proc GLM data = country_analytic_file;
     class 
-		region
+	region
     ;
-	MODEL 
-		Happiness_Score = 
-			Cropland	
-			Grazing_Land	
-			Forest_Land	
-			Fishing_Water	
-			Urban_Land
-	;
+    MODEL 
+	Happiness_Score = 
+		Cropland	
+		Grazing_Land	
+		Forest_Land	
+		Fishing_Water	
+		Urban_Land
+    ;
 run;
 
 title;
@@ -178,7 +182,7 @@ proc reg
     data=country_analytic_file
     ;
     model 
-		happiness_score=happiness_score_2015
+	happiness_score=happiness_score_2015
     ;
 run;
 
