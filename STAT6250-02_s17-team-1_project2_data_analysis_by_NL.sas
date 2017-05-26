@@ -33,8 +33,7 @@ title1
 ;
 
 title2
-'Rationale: This will help see which variables would make good predictors for the
-regression model (ecological_footprint = HDI + GDP_per_Capita HDI*GDP_per_Capita).'
+'Rationale: This will help see which variables would make good predictors for the regression model (ecological_footprint = HDI + GDP_per_Capita HDI*GDP_per_Capita).'
 ;
 
 footnote1
@@ -46,8 +45,7 @@ footnote2
 ;
 
 footnote3
-"This means that the more developed a country is, the greater the value of output each person can produce
-for the country."
+"This means that the more developed a country is, the greater the value of output each person can produce for the country."
 ;
 
 *
@@ -68,7 +66,7 @@ proc GLM
     class 
 	region
     ;
-    MODEL 
+    Model 
 	Total_Ecological_Footprint = 
 		HDI 
 		GDP_per_Capita 
@@ -89,8 +87,7 @@ title1
 ;
 
 title2
-'Rationale: Rationale: This should help identify why type of consumption has the most 
-positive effect on happiness.'
+'Rationale: Rationale: This should help identify why type of consumption has the most positive effect on happiness.'
 ;
 
 footnote1
@@ -98,13 +95,11 @@ footnote1
 ;
 
 footnote2
-"The reason for this could be humans spend the most time in urban space, so the quality of 
-urban space could have a significant impact on their happiness."
+"The reason for this could be humans spend the most time in urban space, so the quality of urban space could have a significant impact on their happiness."
 ;
 
 footnote3
-"It is possible that all the other resource lands provide the basis to sustain society, so urban space
-is the 'extra' factor."
+"It is possible that all the other resource lands provide the basis to sustain society, so urban space is the 'extra' factor."
 ;
 
 *
@@ -124,7 +119,7 @@ Proc GLM data = country_analytic_file;
     class 
 	region
     ;
-    MODEL 
+    Model
 	Happiness_Score = 
 		Cropland	
 		Grazing_Land	
@@ -147,8 +142,7 @@ title1
 ;
 
 title2
-'Rationale: This will allow us to which countries increased or decreased in 
-happiness.'
+'Rationale: This will allow us to which countries increased or decreased in happiness.'
 ;
 
 footnote1
