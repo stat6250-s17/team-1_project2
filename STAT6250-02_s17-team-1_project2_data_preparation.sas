@@ -266,8 +266,8 @@ run;
 
 * use proc sort to sort the analytic data file by RL.;
 proc sort 
-    data=countries_analytic_file
-    out=countries_analytic_file_sorted_RL
+    data=country_analytic_file
+    out=country_analytic_file_sorted_RL
     ;
     by descending Rank_change_2015_to_2016
     ;
