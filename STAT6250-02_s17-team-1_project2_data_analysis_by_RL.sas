@@ -63,7 +63,7 @@ Limitations: This medthod does not account for countries with missing data.
 Followup Steps: More clean values are needed to filter.
 ;
 proc print
-        data=Rank2016_raw_with_yoy_change_sorted
+        data=country_analytic_file_sorted_RL
     ;
     id
         Country
