@@ -48,6 +48,7 @@ footnote3
 ''
 ;
 
+*
 Note: This compares the column "Happiness Rank" from 2015 dataset to the column 
 of the same name from 2016 dataset.
 
@@ -99,6 +100,7 @@ footnote3
 ''
 ;
 
+*
 Note: This compares the column "Urban Land" from countires to the column 
 "Happiness Score" from 2016.
 
@@ -152,6 +154,7 @@ footnote3
 ''
 ;
 
+*
 Note: This will compare “Population” from data set countires to the column 
 "Trust(Government Corruption) from the 2016."
 
