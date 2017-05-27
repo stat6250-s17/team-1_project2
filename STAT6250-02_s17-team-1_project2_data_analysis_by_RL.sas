@@ -27,12 +27,26 @@ X "cd ""%substr(%sysget(SAS_EXECFILEPATH),1,%eval(%length(%sysget(SAS_EXECFILEPA
 *******************************************************************************;
 * Research Question Analysis Starting Point;
 *******************************************************************************;
-*
-Question: What are top five countries that have the biggest ranking increasing 
-from 2015 to 2016?
 
-Rationale: This helps us understand that which countries are doing their best 
-to potentially improve the happiness rankings.
+title1
+'Research Question: What are top five countries that have the biggest ranking increasing from 2015 to 2016?'
+;
+
+title2
+'Rationale: This helps us understand that which countries are doing their best to potentially improve the happiness rankings.'
+;
+
+footnote1
+''
+;
+
+footnote2
+''
+;
+
+footnote3
+''
+;
 
 Note: This compares the column "Happiness Rank" from 2015 dataset to the column 
 of the same name from 2016 dataset.
@@ -58,15 +72,32 @@ proc print
     ;
 run;
 
+title;
+footnote;
+
 *******************************************************************************;
 * Research Question Analysis Starting Point;
 *******************************************************************************;
-*
-Question: Can the "Urban Land" in the dataset countries be used to predict the 
-"Happiness score" in the 2016 World Happiness Report?
 
-Rationale: This helps us understand what kind of impact does the urban land has 
-on the happiness score.
+title1
+'Research Question: Can the "Urban Land" in the dataset countries be used to predict the "Happiness score" in the 2016 World Happiness Report?'
+;
+
+title2
+'Rationale: This helps us understand what kind of impact does the urban land has on the happiness score.'
+;
+
+footnote1
+''
+;
+
+footnote2
+''
+;
+
+footnote3
+''
+;
 
 Note: This compares the column "Urban Land" from countires to the column 
 "Happiness Score" from 2016.
@@ -94,15 +125,32 @@ proc freq
     ;
 run;
 
+title;
+footnote;
+
 *******************************************************************************;
 * Research Question Analysis Starting Point;
 *******************************************************************************;
-*
-Question: Does the population have relationship with the trust(Government 
-Corruption)?
 
-Rationale: More population usually means hard to manage the county, so this 
-helps us understand the relationship between government trust and population.
+title1
+'Research Question: Does the population have relationship with the trust(Government Corruption)?'
+;
+
+title2
+'Rationale: More population usually means hard to manage the county, so this helps us understand the relationship between government trust and population.'
+;
+
+footnote1
+''
+;
+
+footnote2
+''
+;
+
+footnote3
+''
+;
 
 Note: This will compare “Population” from data set countires to the column 
 "Trust(Government Corruption) from the 2016."
@@ -129,3 +177,6 @@ proc freq
         Trust Trust_bins.
     ;
 run;
+
+title;
+footnote;
