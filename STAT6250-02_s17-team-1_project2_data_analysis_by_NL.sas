@@ -49,28 +49,31 @@ footnote3
 ;
 
 *
-Note: This looks at the merged data set, but only uses columns from 'Countries_Edited'.
+Note: This looks at the merged data set, but only uses columns from 
+'Countries_Edited'.
 
-Methodology: Use Proc glm to get the regression model ecological_footprint = HDI + GDP_per_Capita HDI*GDP_per_Capita
-from the data set country_analytic_file. Use region as the class, HDI and GDP_per_Capita as predictors, and HDI*GDP_per_Capita
-as the interaction term.
+Methodology: Use Proc glm to get the regression model ecological_footprint =
+HDI + GDP_per_Capita HDI*GDP_per_Capita from the dataset country_analytic_file.
+Use region as the class, HDI and GDP_per_Capita as predictors, and 
+HDI*GDP_per_Capitaas the interaction term.
 
 Limitations: Does not incorporate the happiness data set.
 
-Followup Steps: Could try to use happiness as the response variable with the same explanatory variables.
+Followup Steps: Could try to use happiness as the response variable with the 
+same explanatory variables.
 ;
 
-proc GLM 
+proc glm 
 	data=country_analytic_file
     ;
     class 
-	region
+		region
     ;
-    Model 
-	Total_Ecological_Footprint = 
-		HDI 
-		GDP_per_Capita 
-		HDI*GDP_per_Capita
+    model 
+		Total_Ecological_Footprint = 
+			HDI 
+			GDP_per_Capita 
+			HDI*GDP_per_Capita
     ;
 run;
 
@@ -83,7 +86,7 @@ footnote;
 *******************************************************************************;
 
 title1
-'Research Question: Which resource consumptions contribute the most to a country’s happiness?'
+'Research Question: Which resource consumptions contribute the most to the happiness of a country?'
 ;
 
 title2
@@ -103,29 +106,31 @@ footnote3
 ;
 
 *
-Note: This compares the columns of all the different resources in the 'Countries-Edited' data set
-with the happiness_score from 'Ranked2016_Edited'.
+Note: This compares the columns of all the different resources in the 
+'Countries-Edited' data setwith the happiness_score from 'Ranked2016_Edited'.
 
-Methodology: Use Proc glm to get the regression model Happiness_Score = Cropland+Grazing_Land+Forest_Land+Fishing_Water+Urban_Land
-from the merged data set country_analytic_file. Happiness is the response variable, while the rest are explanatory variables.
+Methodology: Use Proc glm to get the regression model Happiness_Score = 
+Cropland+Grazing_Land+Forest_Land+Fishing_Water+Urban_Landfrom the merged data
+set country_analytic_file. Happiness is the response variable, while the rest 
+are explanatory variables.
 
 Limitations: There is no interation element in this regression model.
 
-Followup Steps: Could use region as a group factor to be used as an interaction model to see if there are any
-changes to the results.
+Followup Steps: Could use region as a group factor to be used as an interaction 
+model to see if there are any changes to the results.
 ;
 
-Proc GLM data = country_analytic_file;
+proc glm data = country_analytic_file;
     class 
-	region
+		region
     ;
-    Model
-	Happiness_Score = 
-		Cropland	
-		Grazing_Land	
-		Forest_Land	
-		Fishing_Water	
-		Urban_Land
+    model
+		Happiness_Score = 
+			Cropland	
+			Grazing_Land	
+			Forest_Land	
+			Fishing_Water	
+			Urban_Land
     ;
 run;
 
@@ -158,25 +163,25 @@ footnote3
 ;
 
 *
-Note: This will compare the column Happiness_Score_2015 from data set 'Rank2015-Edited' and Happiness_Score
-from data set 'Rank2016-Edited' .
+Note: This will compare the column Happiness_Score_2015 from data set 
+'Rank2015-Edited' and Happiness_Score from data set 'Rank2016-Edited' .
 
-Methodology: Use proc reg to run the regression model with Happiness_score as the response
-variable and happiness_score_2015 as the explanatory variable. This function will generate
-several plots in order to analyze the relationship.
+Methodology: Use proc reg to run the regression model with Happiness_score as
+the responsevariable and happiness_score_2015 as the explanatory variable. This
+function will generate several plots in order to analyze the relationship.
 
-Limitations: The function points out the outliers, but they will have to be manually removed
-from the data set.
+Limitations: The function points out the outliers, but they will have to be 
+manually removed from the data set.
 
-Followup Steps: Could look at the countries that decreased in happiness and see what could
-have lead to their unhappiness.
+Followup Steps: Could look at the countries that decreased in happiness and see
+what could have lead to their unhappiness.
 ;
 
 proc reg 
     data=country_analytic_file
     ;
     model 
-	happiness_score=happiness_score_2015
+		happiness_score=happiness_score_2015
     ;
 run;
 
