@@ -37,7 +37,7 @@ title2
 ;
 
 footnote1
-"HDI, GDP_per_Capita, and HDI*GDP_per_Capita have small p-values, so they are all significant to the model."
+"GLM Procedure: HDI, GDP_per_Capita, and HDI*GDP_per_Capita have small p-values, so they are all significant to the model."
 ;
 
 footnote2
@@ -48,14 +48,17 @@ footnote3
 "This means that the more developed a country is, the greater the value of output each person can produce for the country."
 ;
 
-*
-Note: This looks at the merged data set, but only uses columns from 
-'Countries_Edited'.
+footnote4
+"For follow up steps, try to if region impacts results."
+;
 
-Methodology: Use Proc glm to get the regression model ecological_footprint =
-HDI + GDP_per_Capita HDI*GDP_per_Capita from the dataset country_analytic_file.
+*
+Note: This looks at the merged data set, but only uses columns from 'Countries_Edited'.
+
+Methodology: Use Proc glm to get the regression model ecological_footprint = 
+HDI + GDP_per_Capita HDI*GDP_per_Capita from the data set country_analytic_file.
 Use region as the class, HDI and GDP_per_Capita as predictors, and 
-HDI*GDP_per_Capitaas the interaction term.
+HDI*GDP_per_Capita as the interaction term.
 
 Limitations: Does not incorporate the happiness data set.
 
@@ -63,17 +66,14 @@ Followup Steps: Could try to use happiness as the response variable with the
 same explanatory variables.
 ;
 
-proc glm 
-	data=country_analytic_file
+Proc GLM 
+    data=country_analytic_file
     ;
-    class 
-		region
-    ;
-    model 
-		Total_Ecological_Footprint = 
-			HDI 
-			GDP_per_Capita 
-			HDI*GDP_per_Capita
+    Model 
+	Total_Ecological_Footprint = 
+		HDI 
+		GDP_per_Capita 
+		HDI*GDP_per_Capita
     ;
 run;
 
@@ -105,12 +105,16 @@ footnote3
 "It is possible that all the other resource lands provide the basis to sustain society, so urban space is the 'extra' factor."
 ;
 
+footnote4
+"For follow up see if ecological footprint correlations with each resource capacity."
+;
+
 *
 Note: This compares the columns of all the different resources in the 
 'Countries-Edited' data setwith the happiness_score from 'Ranked2016_Edited'.
 
 Methodology: Use Proc glm to get the regression model Happiness_Score = 
-Cropland+Grazing_Land+Forest_Land+Fishing_Water+Urban_Landfrom the merged data
+Cropland+Grazing_Land+Forest_Land+Fishing_Water+Urban_Land from the merged data 
 set country_analytic_file. Happiness is the response variable, while the rest 
 are explanatory variables.
 
@@ -120,17 +124,16 @@ Followup Steps: Could use region as a group factor to be used as an interaction
 model to see if there are any changes to the results.
 ;
 
-proc glm data = country_analytic_file;
-    class 
-		region
+Proc GLM 
+    data = country_analytic_file
     ;
-    model
-		Happiness_Score = 
-			Cropland	
-			Grazing_Land	
-			Forest_Land	
-			Fishing_Water	
-			Urban_Land
+    Model
+	Happiness_Score = 
+		Cropland	
+		Grazing_Land	
+		Forest_Land	
+		Fishing_Water	
+		Urban_Land
     ;
 run;
 
@@ -151,24 +154,33 @@ title2
 ;
 
 footnote1
-"There is a positive correlation between Happiness in 2015 to Happiness in 2016."
+"Reg Procedure: The model has a p value of <.0001, meaning it is significant."
 ;
 
 footnote2
-"This means Happiness in most countries did increase."
+"Fit plot: There is a positive correlation between Happiness in 2015 to Happiness in 2016."
 ;
 
 footnote3
-"There appear to be 4 outliers, removing these should improve the correlation strength."
+"This means Happiness in most countries did increase."
 ;
+
+footnote4
+"Residual plot: There are 2 extreme outliers."
+;
+
+footnote5
+"Follow up step would be to remove the outliers to see if correlation strenght improves."
+;
+
 
 *
 Note: This will compare the column Happiness_Score_2015 from data set 
 'Rank2015-Edited' and Happiness_Score from data set 'Rank2016-Edited' .
 
-Methodology: Use proc reg to run the regression model with Happiness_score as
-the responsevariable and happiness_score_2015 as the explanatory variable. This
-function will generate several plots in order to analyze the relationship.
+Methodology: Use proc reg to run the regression model with Happiness_score as 
+the response variable and happiness_score_2015 as the explanatory variable. 
+This function will generate several plots in order to analyze the relationship.
 
 Limitations: The function points out the outliers, but they will have to be 
 manually removed from the data set.
@@ -177,11 +189,11 @@ Followup Steps: Could look at the countries that decreased in happiness and see
 what could have lead to their unhappiness.
 ;
 
-proc reg 
+Proc REG 
     data=country_analytic_file
     ;
     model 
-		happiness_score=happiness_score_2015
+	happiness_score=happiness_score_2015
     ;
 run;
 
