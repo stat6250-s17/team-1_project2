@@ -27,24 +27,34 @@ X "cd ""%substr(%sysget(SAS_EXECFILEPATH),1,%eval(%length(%sysget(SAS_EXECFILEPA
 *******************************************************************************;
 
 title1
-'Research Question: What are the three lowest happiness raking countries ?'
+'Research Question: What are the three lowest happiness raking countries?'
 ;
 
 title2
 'Rationale: This would help us find the countries that are less happy.'
 ;
 
+footnote1
+" From the table above, we can figure out the average of the countris' happiness rate "
+;
+ 
+footnote2
+" The variance of the happiness rate among countries seems large. Threfore, the average might not be accurate." 
+;
 
 *
 Note: This drows comparison between the happiness rank of each country.
+
 Methodology: We would use the merged dataset to run the "proc sort"  to  sort the data in a descending order and find out 
 what countries have the lowest happiness rank are.
+
 Limitations:  We may end up with some countries with the same happiness rank.
+
 Followup Steps: We could look at another variable to determine the answer of the research question.
 ;
 
 proc print
-        data=Rank2016_raw_with_yoy_change_sorted
+     data=country_analytic_file;
     ;
     id
         Country
@@ -57,11 +67,10 @@ run;
 title;
 footnote;
 
-
 *******************************************************************************;
 * Research Question Analysis Starting Point;
 *******************************************************************************;
-*
+
 title1
 'Research Question: what is the average happiness rate among the countries ?'
 ;
@@ -70,37 +79,62 @@ title2
 'Rationale: This will show us the average score of the happiness rate among the countries.'
 ;
 
+footnote1
+" From the table above, we can figure out the average of the countris' happiness rate "
+;
+ 
+ 
+footnote2
+" The variance of the happiness rate among countries seems large. Threfore, the average might not be accurate."
+;
+
+
 *
-Note: This sets a threshold of what the average rate of  happiness among teh dataset.
+Note: This sets a threshold of what the average rate of  happiness among the dataset.
+
 Methodology: By applying the "proc means" statement then sorting the dataset to cakcualte the average rate of happiness in the dataset.
+
 Limitations:  Since we use the mean to find out the average, we may come across countries that has either low or high rate of happiness
 so these countries may impact the result.
+
 Followup Steps: Try to divide the happiness rate into three subsets with minimum variance in each subset and caluculte the average of 
 each subset.
 ;
+
+
 proc print
-        data=Rank2016_raw_with_yoy_change_sorted
+     data=country_analytic_file;
     ;
-    
+    id
+        Country
+    ;
     var
-        Rank_change_2015_to_2016
+        mean_of_Happiness_Ranking_by_country
     ;
 run;
 
 title;
 footnote;
-
-
 *******************************************************************************;
 * Research Question Analysis Starting Point;
 *******************************************************************************;
-*
+
 title1
-'Research Question: Based on year 2015 data, can we say that the happiness rating of 2015 is higher than 2016?    ?'
+'Research Question: Based on year 2015 data, can we say that the happiness rating of 2015 is higher than 2016?'
 ;
 
 title2
 'Rationale: This should help us see whether the counties increased or decreased in their happiness rate throughout the years.'
+;
+
+footnote1
+" From the table above,  we can say that the happiness rate,on average, in 2015 is higher than 2016.  "
+
+;
+ 
+ 
+footnote2
+" The result shows us that the datasets does not allow us to extrapolate the concept due to insufficient variables provided."
 ;
 
 *
@@ -114,7 +148,7 @@ proc reg
     data=country_analytic_file
     ;
     model 
-		happiness_score=happiness_score_2015
+	happiness_score=happiness_score_2016
     ;
 run;
 
