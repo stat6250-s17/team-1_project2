@@ -35,11 +35,11 @@ title2
 ;
 
 footnote1
-" From the table above, we can figure out the average of the countris' happiness rate "
+" From the table above, we found out what the three lowest happiness raking countries are. "
 ;
  
 footnote2
-" There is  huge variablity in  the happiness rate values of countries. Threfore, the average might not be on point." 
+" The result may not be applicabe since some other factors were not taken into account. However, it gives us a holistic idea." 
 ;
 
 *
@@ -85,7 +85,7 @@ footnote1
  
  
 footnote2
-" The variance of the happiness rate among countries seems large. Threfore, the average might not be accurate."
+" The variance of the happiness rate among countries seems large. Therefore, the average might not be accurate."
 ;
 
 
