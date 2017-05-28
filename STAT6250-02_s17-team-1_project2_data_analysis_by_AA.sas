@@ -39,11 +39,11 @@ footnote1
 ;
  
 footnote2
-" The variance of the happiness rate among countries seems large. Threfore, the average might not be accurate." 
+" There is  huge variablity in  the happiness rate values of countries. Threfore, the average might not be on point." 
 ;
 
 *
-Note: This drows comparison between the happiness rank of each country.
+Note: This draws comparison between the happiness rank of each country.
 
 Methodology: We would use the merged dataset to run the "proc sort"  to  sort the data in a descending order and find out 
 what countries have the lowest happiness rank are.
