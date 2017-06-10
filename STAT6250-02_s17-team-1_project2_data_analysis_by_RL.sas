@@ -63,7 +63,7 @@ Limitations: This medthod does not account for countries with missing data.
 Followup Steps: More clean values are needed to filter.
 ;
 proc print
-        data=country_analytic_file_sorted_RL
+        data=country_analytic_file_sorted_RL(obs=5)
     ;
     id
         Country
@@ -116,7 +116,7 @@ proc freq
         data=country_analytic_file
     ;
     table
-        Urban_Land
+        Urban_Land*Happiness_score
     ;
         where
             not(missing(Happiness_Score))
@@ -170,7 +170,7 @@ proc freq
         data=country_analytic_file
     ;
     table
-        Population
+        Population*Trust
     ;
         where
             not(missing(Trust))
