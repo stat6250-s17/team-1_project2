@@ -37,15 +37,15 @@ title2
 ;
 
 footnote1
-''
+'Based on the result, the top five countires that have the biggest ranking increasing are all third world countires.'
 ;
 
 footnote2
-''
+'Third world countries tend to have great space for improvement in all fields.'
 ;
 
 footnote3
-''
+'Developed countries still can improve happiness ranking in other ways such as updating infrastructure.'
 ;
 
 *
@@ -89,15 +89,15 @@ title2
 ;
 
 footnote1
-''
+'Urban land does have positive effect on happiness score.'
 ;
 
 footnote2
-''
+'More urban land means higher living standard, and living standard could lead to high happiness score.'
 ;
 
 footnote3
-''
+'In some low urban land countries, the happiness scores are still relative high perhaps because living environment is better.'
 ;
 
 *
@@ -143,15 +143,15 @@ title2
 ;
 
 footnote1
-''
+'Countries with high trust all have low population, but low population does not means high trust.'
 ;
 
 footnote2
-''
+'Countries with large population may have more problem in trust. Managing corruption may be the key to have higher trust.'
 ;
 
 footnote3
-''
+'Almost half of the total countries have less than 10% trust, and almost 80% of the total countries have less than 20% trust. The whole world needs to deal with trust problem with more efforts.'
 ;
 
 *
