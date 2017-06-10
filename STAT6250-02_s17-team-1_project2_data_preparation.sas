@@ -39,6 +39,39 @@ each country.
 2016, and countries.
 ;
 
+* environmental setup;
+
+* create output formats;
+
+proc format;
+    value Urban_Land_bins
+        low-<.1="<10%"
+        .1-<.2="10%-20%"
+        .2-high=">20%"
+    ;
+    value Happiness_Score_bins
+        low-<3="<3"
+        3-<4="3-4"
+        4-<5="4-5"
+        5-<6="5-6"
+        6-<7="6-7"
+        7-high=">7"
+    ;
+    value Population_bins
+	low-<10="<10million"
+	10-<50="10million - 50million"
+        50-<100="50million - 100million"
+	100-high=">100million"
+    ;
+    value Trust_bins
+	low-<.1="<10%"
+        .1-<.2="10%-20%"
+	.2-<.3="20%-30%"
+	.3-<.4="30%-40%"
+	.4-high=">40%"
+    ;
+run;
+
 * setup environmental parameters;
 %let inputDataset1URL =
 https://github.com/stat6250/team-1_project2/blob/master/data/Rank2015-Edited.xlsx?raw=true
