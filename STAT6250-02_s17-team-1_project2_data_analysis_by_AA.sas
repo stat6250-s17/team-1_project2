@@ -6,9 +6,11 @@
 *
 This file uses the following analytic dataset to address several research
 questions regarding world happiness rankings and national ecological footprint
+
 Dataset Name: country_analytic_file created in external file
 STAT6250-02_s17-team-1_project2_data_preparation.sas, which is assumed to be
 in the same directory as this file
+
 See included file for dataset properties
 ;
 
@@ -26,6 +28,7 @@ X "cd ""%substr(%sysget(SAS_EXECFILEPATH),1,%eval(%length(%sysget(SAS_EXECFILEPA
 * Research Question Analysis Starting Point;
 *******************************************************************************;
 
+
 title1
 'Research Question: What are the three lowest happiness raking countries?'
 ;
@@ -42,11 +45,16 @@ footnote2
 " The result may not be applicabe since some other factors were not taken into account. However, it gives us a holistic idea." 
 ;
 
+footnote3
+'It could be noticed that countries that are less advanced have the potential to increase their happiness score. '
+;
+
 *
 Note: This draws comparison between the happiness rank of each country.
 
-Methodology: We would use the merged dataset to run the "proc sort"  to  sort the data in a descending order and find out 
-what countries have the lowest happiness rank are.
+Methodology: We would use the merged dataset"Happiness_Rank" and create the Rank_change_2015_to_2016 variable 
+to run the "proc sort"  to  sort the data in a descending order and find out 
+what countries have the lowest happiness raningk are.
 
 Limitations:  We may end up with some countries with the same happiness rank.
 
@@ -88,13 +96,17 @@ footnote2
 " The variance of the happiness rate among countries seems large. Therefore, the average might not be accurate."
 ;
 
+footnote3
+'It is possible to say the mean calculated here does not take other field and variables of the countries into account.'
+;
 
 *
 Note: This sets a threshold of what the average rate of  happiness among the dataset.
 
-Methodology: By applying the "proc means" statement then sorting the dataset to cakcualte the average rate of happiness in the dataset.
+Methodology: By applying the "proc means" statement on the "Happiness_Rank", we can 
+calcualte the averagerate of happiness in the dataset.
 
-Limitations:  Since we use the mean to find out the average, we may come across countries that has either low or high rate of happiness
+Limitations:  Since we use the mean to find out the average, we may come across countries that have either low or high rate of happiness
 so these countries may impact the result.
 
 Followup Steps: Try to divide the happiness rate into three subsets with minimum variance in each subset and caluculte the average of 
@@ -109,46 +121,60 @@ proc print
         Country
     ;
     var
-        mean_of_Happiness_Ranking_by_country
+        Rank_change_2015_to_2016
     ;
 run;
 
 title;
 footnote;
+
 *******************************************************************************;
 * Research Question Analysis Starting Point;
 *******************************************************************************;
 
 title1
-'Research Question: Based on year 2015 data, can we say that the happiness rating of 2015 is higher than 2016?'
+'Research Question: Is there a relationship between the population and freedom?'
 ;
 
 title2
-'Rationale: This should help us see whether the counties increased or decreased in their happiness rate throughout the years.'
+'Rationale: This should help us see whether the population have the freedom to do and say what they want and express that .'
 ;
 
 footnote1
-" From the table above,  we can say that the happiness rate,on average, in 2015 is higher than 2016.  "
+" Here, we can say that countries with lagrer population tend to fail to provide enough freedom and not vice versa.  "
 
 ;
- 
  
 footnote2
-" The result shows us that the datasets does not allow us to extrapolate the concept due to insufficient variables provided."
+" Although the dataset does not help us extrapolate the relationship, yet, we can say that the less population, the more more freedom space  counries can give "
 ;
 
+footnote3
+'More than half of the population have about 25%. It seems there peple are not satisfied with their freedom space they are given.'
+;
 *
-Note: This shows a comparison between the rate of  happiness in  year 2015 and 2016.
-Methodology: One way to think abouth this iss apply the regression analysis betweeen the two years.
-Limitations:  Some variables may not make the result accurate.
-Followup Steps: Try to apply the "proc glm" statement.
+Note: This shows a comparison between the population of  happiness and the "Freedom from the 2016. ".
+
+Methodology: One way to think abouth this is to apply  "proc means" then "proc format" in order to bin
+the two columns w.r.t o the proc means.
+
+Limitations:  We need to add more variables to make the relation more accurate.
+
+Followup Steps: Try to add the Trust(Government Corruption) variable. Or, we can apply the "proc glm" to do regression analysis.
 ;
 
-proc reg 
-    data=country_analytic_file
+proc freq
+        data=country_analytic_file
     ;
-    model 
-	happiness_score=happiness_score_2016
+    table
+        Population*Freedom
+    ;
+        where
+            not(missing(Freedom))
+    ;
+    format
+        Population Population_bins.
+        Freedom Freedom_bins.
     ;
 run;
 
