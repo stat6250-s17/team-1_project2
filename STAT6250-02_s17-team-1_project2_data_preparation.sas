@@ -306,3 +306,35 @@ proc sort
     ;
 run;
 
+* Use proc sort to sort the analytic data file to sort the the Happiness rank by AA
+
+proc sort
+     data=country_analytic_file;
+    ;
+    id
+        Country
+    ;
+    var
+        Rank_change_2015_to_2016
+    ;
+run;
+
+title;
+footnote;
+
+
+* Use proc means to sort the analytic data file to find the average happiness rate by AA
+
+proc means
+     data=country_analytic_file;
+    ;
+    id
+        Country
+    ;
+    var
+        Rank_change_2015_to_2016
+    ;
+run;
+
+title;
+footnote;
